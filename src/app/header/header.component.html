@@ -1,0 +1,34 @@
+<div class="navbar navbar-default main navbar-fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/fee-list">
+      DashBoard
+    </a>
+    <button class="navbar-toggle" data-toggle="collapse" data-target=".navHead">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse navHead">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a  class="dropdown-toggle" data-toggle="dropdown">Admin Operations<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/employee-entry">Employee Entry</a></li>
+            <li><a routerLink = "/employee-list">Employee Records</a></li>
+            <li><a routerLink="/defaulter-list">Defaulter Records</a></li>
+            <li><a routerLink="/admin-account">My Bank</a></li>
+            <li><a routerLink="/super-bank">Super Admin Bank</a></li>
+          </ul>
+        </li>
+        <li><a  class="dropdown-toggle" data-toggle="dropdown">Employee Module<span class="caret"></span></a>
+          <ul class="dropdown-menu">							
+            <li><a routerLink="/customer-entry">Customer Entry </a></li>
+            <li><a routerLink="/fee-entry">Fee Entry </a></li>
+            <li><a routerLink="/fee-list">Fee List</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/employee-bank">Employee Account</a></li>
+        <li><a href="#" >Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

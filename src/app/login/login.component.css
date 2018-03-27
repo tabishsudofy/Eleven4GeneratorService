@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; }
+  
+  .container {
+    width: 390px;
+    height: 549px;
+    background: #000;
+    margin: 4% auto;
+    text-align: center;
+    -webkit-box-shadow: 0px 0px 114px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 114px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 114px 2px rgba(0, 0, 0, 0.75); }
+  .main-container{
+      width:70%;
+      text-align: center;
+      margin: 8% auto;
+  }
+  input {
+    margin-bottom: 10px;
+    height: 50px;
+    border: 2px solid black;
+    font-family: calibri;
+    font-size: 20px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 10px;
+    color: #736270;
+    border-bottom-color: #4285f4;
+    transition: all 0s ease-in-out;
+    width: 100%;
+    outline: none;
+    background-color: black;
+   }
+    input:focus {
+      animation: fill 2s  ease-in-out forwards; }
+    input:focus::-webkit-input-placeholder {
+      color: #1abc9c;
+      font-size: 11px;
+      transform: translateY(-20px);
+      animation: fill 2s  ease-in-out forwards;
+      transition: 0.5s; }
+  
+  .text {
+   
+    margin-top: 254px;
+    border: none;
+    background: #000;
+    margin-left: 101px;
+    color: gray;
+    width: 196px;
+    height: 44px;
+    padding-left: 3px;
+    z-index: 100;
+    outline: none;
+    border-bottom: 2px solid green;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 21px;
+    transition: all 0s cubic-bezier(0.895, 0.03, 0.685, 0.22); }
+  
+  .text:focus {
+    outline-width: 0;
+    font-size: 16px; }
+  
+  .pass{
+    margin-top: 305px;
+    border: none;
+    background: #000;
+    margin-left: 101px;
+    color: gray;
+    width: 196px;
+    height: 44px;
+    padding-left: 3px;
+    z-index: 100;
+    font-family: 'Roboto', sans-serif;
+    border-bottom: 2px solid green;
+    padding-top: 21px;
+    transition: all 0s cubic-bezier(0.895, 0.03, 0.685, 0.22); }
+  
+  .pass:focus {
+    outline-width: 0;
+    font-size: 16px; }
+  
+  button {
+    z-index: 100;
+    width: 149px;
+    height: 43px;
+    border: 1px solid #fff;
+    background: #000;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 22px;
+    margin: 20% auto;
+    transition: 0.5s;
+    cursor: pointer; }
+  
+  button:hover {
+    color: #000;
+    background: #fff; }
+  
+  button:focus {
+    outline-width: 0; }
+  
+  .header h1 {
+    text-align: center;
+    font-family: calibri;
+    color: #fff;
+    font-size: 4em; 
+     }
+  
+  .info {
+    margin-top:5%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #BDFFBD;
+    font-size: 14px;
+    }
+  
+
+  
