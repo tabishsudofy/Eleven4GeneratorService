@@ -1,4 +1,152 @@
 <app-header></app-header>
-<p>
-  defaulter-list works!
-</p>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Defaulter Customers</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group row">
+            <div class="col-md-5">
+                <div class="field">
+                    <input type="text" name="fullname" id="fullname" placeholder="Customer Name">
+                    <label for="fullname">Customer Name</label>
+                </div>
+               
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="field">
+                    <input type="text" name="fullname" id="fullname" placeholder="Panel">
+                    <label for="fullname">Panel</label>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-5">
+                <div class="field">
+                    <input type="text" name="fullname" id="fullname" placeholder="Phone Number">
+                    <label for="fullname">Phone Number</label>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="field">
+                    <input type="number" name="fullname" id="fullname" placeholder="Paid">
+                    <label for="fullname">Paid</label>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-5">
+                <div class="field">
+                    <input type="number" name="fullname" id="fullname" placeholder="Street Number">
+                    <label for="fullname">Street Number</label>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="field">
+                    <input type="date" name="fullname" id="fullname" placeholder="Start Month">
+                    <label for="fullname">Start Month</label>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-5">  
+                <div class="field">
+                    <input type="number" name="fullname" id="fullname" placeholder="Ampere">
+                    <label for="fullname">Ampere</label>
+                </div>
+             </div>
+             <div class="col-md-1"></div>
+             <div class="col-md-5">  
+                <div class="field">
+                    <input type="text" name="fullname" id="fullname"  placeholder="Amount">
+                    <label for="fullname">Amount</label>
+                </div>
+             </div>
+          </div>
+          <div class="form-group row">
+              <div class="col-md-2"></div> 
+            <div class="col-md-6">  
+                <div class="field">
+                    <input type="text" name="fullname" id="fullname" placeholder="Remarks">
+                    <label for="fullname">Remarks</label>
+                </div>
+             </div>
+          </div>   
+          <div class="form-group row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <input type="button" class="btn btn-success" value="Submit Record">
+            </div>
+            <div class="col-md-4">
+              <input type="reset" class="btn btn-danger"value="Reset">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--ends of toggle div-->
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h3 class="text-center">Defaulter List</h3>
+    <div class="row  search-form">
+      <form>
+        <div class="row">
+        <label class="form-group col-md-2">
+          <input routerLink="/fee-list" value="Add Defaulters" class="form-control btn btn-warning" />
+        </label>
+        <div class="col-md-6"></div>
+        <div class="form-group col-md-4">
+            <div class="field">
+                <input type="text" name="fullname" id="search_tab" placeholder="Search">
+                <label for="fullname">Search</label>
+            </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered search-table">
+      <tr class="info active">
+        <th>S.No</th>
+        <th>NAME</th>
+        <th>PANEL</th>
+        <th>PHONE NUMBER</th>
+        <th>PAID</th>
+        <th>STREET NUMBER</th>
+        <th>START MONTH</th>
+        <th>AMPERE</th>
+        <th>AMOUNT</th>
+        <th>REMARKS</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <td>100</td>
+        <td>name</td>
+        <td>password</td>
+        <td>cnic</td>
+        <td>contact</td>
+        <td> amount</td>
+        <td>joining date</td>
+        <td>joining date</td>
+        <td>joining date</td>
+        <td>joining date</td>
+        <td>
+          <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Edit">
+          <input type="button" class="btn btn-danger" value="Del">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

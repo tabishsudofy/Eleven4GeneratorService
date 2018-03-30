@@ -42,8 +42,8 @@
             <div class="col-md-1"></div>
             <div class="col-md-5">
               <div class="field">
-                <input type="number" name="fullname" value="0" readonly id="fullname" placeholder="Employee Amount">
-                <label for="fullname">Employee Amount</label>
+                <input type="text" name="fullname" id="fullname" placeholder="Employee Address">
+                <label for="fullname">Employee Address</label>
               </div>
             </div>
             <div class="col-md-5">
@@ -54,7 +54,6 @@
             </div>
           </div>
           <div class="form-group row">
-            
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <div class="field">
@@ -87,17 +86,18 @@
     <h3 class="text-center">Employee Records</h3>
     <div class="row  search-form">
       <form>
+        <div class="row">
         <label class="form-group col-md-2">
-          <input routerLink="/employee-entry" value="Add Employee" class="form-control btn btn-warning" />
-
+          <input routerLink="/employee-entry" value="Add Employee" class="form-control btn btn-warning"/>
         </label>
         <div class="col-md-6"></div>
-        <!-- <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
             <div class="field">
-                <input type="number" name="fullname" id="fullname" placeholder="Search By name">
+                <input type="number" name="fullname" id="search_bar" placeholder="Search">
                 <label for="fullname">Search</label>
             </div>
-        </div> -->
+        </div>
+      </div>
       </form>
     </div>
   </div>
@@ -109,8 +109,10 @@
         <th>EMPLOYEE PASSWORD</th>
         <th>EMPLOYEE CNIC</th>
         <th>EMPLOYEE CONTACT</th>
+        <th>EMPLOYEE Address</th>
         <th>EMPLOYEE AMOUNT</th>
         <th>EMPLOYEE JOINING DATE</th>
+        <th>EMPLOYEE Type</th>
         <th>Actions</th>
       </tr>
       <tr>
@@ -119,11 +121,13 @@
         <td>password</td>
         <td>cnic</td>
         <td>contact</td>
-        <td> amount</td>
+        <td>address</td>
+        <td>Amount</td>
         <td>joining date</td>
+        <td>Employee Type</td>
         <td>
           <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Edit">
-          <input type="button" class="btn btn-danger" value="X">
+          <input type="button" class="btn btn-danger" value="Del">
         </td>
       </tr>
     </table>

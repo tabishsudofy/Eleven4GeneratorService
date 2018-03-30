@@ -6,6 +6,9 @@
 .container{
     margin-top: 5%;
 }
+#search_bar{
+  background-color: rgb(238, 238,238);
+}
 form {
   margin: 2em 0;
 }
