@@ -10,6 +10,12 @@ form {
 .notPaid{
   background-color: sandybrown;
 }
+.table-bordered{
+  border : 1px solid rgb(141, 136, 136)  !important;
+}
+th{
+  text-align: center;
+}
 /**
 * Make the field a flex-container, reverse the order so label is on top.
 */

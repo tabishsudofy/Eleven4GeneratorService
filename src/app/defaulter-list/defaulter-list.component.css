@@ -4,6 +4,9 @@
 form {
   margin: 2em 0;
 }
+th{
+  text-align: center;
+}
 /**
 * Make the field a flex-container, reverse the order so label is on top.
 */

@@ -8,14 +8,25 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-
+  public recordsId : any;
+  public inputModal : any;
   constructor(private http : HttpService,public toastMessages: ToastsManager
     , vcr: ViewContainerRef ) {
     this.toastMessages.setRootViewContainerRef(vcr);
+
+    this.inputModal={
+      employeeName : "",
+      employeePassword:"",
+      employeeCnic : "",
+      employeeContact : "",
+      employeeAdress:"",
+      employeeJoinMonth : "",
+      type : "",
+    }
+
   }
 
   url = 'getAllEmployees';
-  
   list;
   getEmployeeList(){
     return this.http.getData(this.url).subscribe(data1=>{
@@ -48,6 +59,47 @@ export class EmployeeListComponent implements OnInit {
 onClick(item,index){
   this.deleteEmployeeData(item._id,index);
 }
+
+    // updating Records
+    onUpdate(items){
+      console.log(items)
+      this.inputModal.employeeName = items.employeeName;
+      this.inputModal.employeePassword = items.employeePassword;
+      this.inputModal.employeeCnic = items.employeeCnic;
+      this.inputModal.employeeContact = items.employeeContact;
+      this.inputModal.employeeAdress = items.employeeAdress;
+      this.inputModal.employeeJoinMonth = items.employeeJoinMonth;
+      this.inputModal.type = items.type;
+      this.recordsId  = items._id;
+      // console.log("it is an id")
+      console.log(this.recordsId)
+    }
+    editPopUpRecords(){
+      this.updateModalRecords(this.recordsId , this.inputModal);
+    }
+    updateModalRecords(id,items){
+      var url = 'employeeEntryUpdate/'+id;
+      console.log("it is an id ",id);
+      this.http.editData(url,items).subscribe(data1 => { 
+        if(data1.statusCode !== 505){
+          this.toastMessages.success('Data Has been Updated!', 'Updated!');
+          location.reload();
+        }
+        else{
+          this.toastMessages.error('Error While Updating!', 'Error!!');
+          console.log(data1, "Data not save")
+        }
+     },
+      err => {
+        console.log(err, "error")
+      }
+    )
+  }
+
+
+
+
+
 
   ngOnInit() {
   this.getEmployeeList();

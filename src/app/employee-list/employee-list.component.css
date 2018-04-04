@@ -1,7 +1,9 @@
 .container-fluid{
     margin-top: 5%;
 }
-
+th{
+  text-align: center;
+}
   
 .container{
     margin-top: 5%;

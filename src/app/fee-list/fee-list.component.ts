@@ -116,7 +116,7 @@ export class FeeListComponent implements OnInit {
     console.log("balance")
     this.input.balance =  this.input.amount - this.input.paid
    }
-
+ 
   ngOnInit() {
   this.getFeeList();
 

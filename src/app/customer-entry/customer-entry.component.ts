@@ -28,13 +28,13 @@ export class CustomerEntryComponent implements OnInit {
   newdata;
   insertCustomer(){
       var url = 'saveCustomerEntry';
-      console.log(this.input);
+
       this.http.addData(url,this.input).subscribe(data1 => {
         if(data1.statusCode === 200){
-          this.toastMessages.success('Data Has been Saved!', 'Saved!');
+          this.toastMessages.success('Data Has been Saved!', 'Saved!',1000);
         }
         else{
-          this.toastMessages.error('Something went wrong!', 'Error!!');
+          this.toastMessages.error('Something went wrong!', 'Error!!',{timeout:2000});
         }
       },
         err => {

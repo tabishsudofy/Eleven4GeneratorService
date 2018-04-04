@@ -12,13 +12,13 @@
             <div class="col-md-1"></div>
             <div class="col-md-5">
               <div class="field">
-                <input type="text" name="fullname" id="fullname" placeholder="Employee Name">
+                <input type="text" name="employeeName" [(ngModel)]="inputModal.employeeName" placeholder="Employee Name">
                 <label for="fullname">Employee Name</label>
               </div>
             </div>
             <div class="col-md-5">
               <div class="field">
-                <input type="text" name="fullname" id="fullname" placeholder="Employee Password">
+                <input type="text" name="employeePassword" [(ngModel)]="inputModal.employeePassword" placeholder="Employee Password">
                 <label for="fullname">Employee Password</label>
               </div>
             </div>
@@ -27,13 +27,13 @@
             <div class="col-md-1"></div>
             <div class="col-md-5">
               <div class="field">
-                <input type="text" name="fullname" id="fullname" placeholder="CNIC">
+                <input type="text" name="employeeCnic" [(ngModel)]="inputModal.employeeCnic" placeholder="CNIC">
                 <label for="fullname">CNIC</label>
               </div>
             </div>
             <div class="col-md-5">
               <div class="field">
-                <input type="text" name="fullname" id="fullname" placeholder="Employee Contact">
+                <input type="text" name="employeeContact" [(ngModel)]="inputModal.employeeContact" placeholder="Employee Contact">
                 <label for="fullname">Employee Contact</label>
               </div>
             </div>
@@ -42,13 +42,13 @@
             <div class="col-md-1"></div>
             <div class="col-md-5">
               <div class="field">
-                <input type="text" name="fullname" id="fullname" placeholder="Employee Address">
+                <input type="text" name="employeeAdress" [(ngModel)]="inputModal.employeeAdress" placeholder="Employee Address">
                 <label for="fullname">Employee Address</label>
               </div>
             </div>
             <div class="col-md-5">
               <div class="field">
-                <input type="date" name="fullname" id="fullname" placeholder="Employee Joining Date">
+                <input type="date" name="employeeJoinMonth" [(ngModel)]="inputModal.employeeJoinMonth" placeholder="Employee Joining Date">
                 <label for="fullname">Employee Joining Date</label>
               </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <div class="field">
-                <input type="text" name="fullname" id="fullname" placeholder="Employee Type">
+                <input type="text" name="type" [(ngModel)]="inputModal.type" placeholder="Employee Type">
                 <label for="fullname">Employee Type</label>
               </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-2"></div>
             <div class="col-md-4">
-              <input type="button" class="btn btn-success" value="Submit Record">
+              <input type="button" (click)="editPopUpRecords()" class="btn btn-success" value="Submit Record">
             </div>
             <div class="col-md-4">
               <input type="reset" class="btn btn-danger" value="Reset">
@@ -124,9 +124,9 @@
         <td>{{item.employeeAdress}}</td>
         <td>{{item.employeeAmount}}</td>
         <td>{{item.employeeJoinMonth}}</td>
-        <td>{{item.type}}</td>
+        <td>{{item.type}}</td> 
         <td>
-          <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Edit">
+          <input type="button" class="btn btn-primary" (click)="onUpdate(item)" data-toggle="modal" data-target="#myModal" value="Edit">
           <input type="button" class="btn btn-danger" (click)="onClick(item,i)"value="Del">
         </td>
       </tr>
