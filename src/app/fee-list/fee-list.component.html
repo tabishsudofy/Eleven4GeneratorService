@@ -11,7 +11,7 @@
           <div class="form-group row">
             <div class="col-md-5">
                 <div class="field">
-                    <input type="text" name="fullname" id="fullname" placeholder="Customer Name">
+                    <input type="text" name="name" [(ngModel)]="input.name" id="fullname" placeholder="Customer Name">
                     <label for="fullname">Customer Name</label>
                 </div>
                
@@ -19,7 +19,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-5">
                 <div class="field">
-                    <input type="text" name="fullname" id="fullname" placeholder="Panel">
+                    <input type="text" name="Panel" [(ngModel)]="input.panel"id="fullname" placeholder="Panel">
                     <label for="fullname">Panel</label>
                 </div>
             </div>
@@ -27,14 +27,14 @@
           <div class="form-group row">
             <div class="col-md-5">
                 <div class="field">
-                    <input type="text" name="fullname" id="fullname" placeholder="Phone Number">
+                    <input type="text" name="phone_no" [(ngModel)]="input.phone_no" id="fullname" placeholder="Phone Number">
                     <label for="fullname">Phone Number</label>
                 </div>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-5">
                 <div class="field">
-                    <input type="date" name="fullname" id="fullname" placeholder="Month">
+                    <input type="text" name="month" [(ngModel)]="input.month" id="fullname" placeholder="Month">
                     <label for="fullname">Month</label>
                 </div>
             </div>
@@ -42,14 +42,14 @@
           <div class="form-group row">
             <div class="col-md-5">
                 <div class="field">
-                    <input type="number" name="fullname" id="fullname" placeholder="Paid">
+                    <input type="number" name="paid"[(ngModel)]="input.paid" id="fullname" placeholder="Paid">
                     <label for="fullname">Paid</label>
                 </div>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-5">
                 <div class="field">
-                    <input type="number" name="fullname" id="fullname" placeholder="Street Number">
+                    <input type="number" name="street_no" [(ngModel)]="input.street_no" id="fullname" placeholder="Street Number">
                     <label for="fullname">Street Number</label>
                 </div>
             </div>
@@ -57,14 +57,14 @@
           <div class="form-group row">
             <div class="col-md-5">  
                 <div class="field">
-                    <input type="number" name="fullname" id="fullname" placeholder="Ampere">
+                    <input type="number" (keyup)="findAmount()" name="ampere" [(ngModel)]="input.ampere" id="fullname" placeholder="Ampere">
                     <label for="fullname">Ampere</label>
                 </div>
              </div>
              <div class="col-md-1"></div>
              <div class="col-md-5">  
                 <div class="field">
-                    <input type="number" name="fullname" id="fullname"  placeholder="Amount">
+                    <input type="number" name="amount"(keyup)="findBalance()" id="fullname" [(ngModel)]="input.amount"  placeholder="Amount">
                     <label for="fullname">Amount</label>
                 </div>
              </div>
@@ -73,14 +73,14 @@
             <div class="col-md-2"></div>
               <div class="col-md-8">  
                   <div class="field">
-                      <input type="number" name="fullname" id="fullname" placeholder="Balance">
+                      <input type="number" name="balance"[(ngModel)]="input.balance" id="fullname" placeholder="Balance">
                       <label for="fullname">Balance</label>
                   </div>
                </div>
           </div>     
           <div class="form-group row">
             <div class="col-md-4">
-              <input type="button" class="btn btn-success" value="Submit Record">
+              <input type="button" (click)="editPopUpRecords()" class="btn btn-success" value="Submit Record">
             </div>
             <div class="col-md-4">
               <input type="button" class="btn btn-warning"value="Print Orignal">
@@ -106,7 +106,13 @@
         <label class="form-group col-md-2">
           <input routerLink="/fee-entry" value="Add Fee" class="form-control btn btn-warning" />
         </label>
-        <div class="col-md-6"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <div class="field">
+                <input type="text" id="search_tab" placeholder="Search By Year">
+                <label for="fullname">Search By Year</label>
+            </div>
+        </div>
         <div class="form-group col-md-4">
             <div class="field">
                 <input type="text" name="fullname" id="search_tab" placeholder="Search">
@@ -124,28 +130,30 @@
         <th>PANEL</th>
         <th>PHONE NUMBER</th>
         <th>Month</th>
+        <th>YEAR</th>
         <th>PAID</th>
         <th>STREET NUMBER</th>
         <th>AMPERE</th>
         <th>AMOUNT</th>
-        <th>Balance</th>
+        <th>BALANCE</th>
         <th>Actions</th>
       </tr>
-      <tr>
-        <td>100</td>
-        <td>name</td>
-        <td>password</td>
-        <td>cnic</td>
-        <td>contact</td>
-        <td> amount</td>
-        <td>joining date</td>
-        <td>joining date</td>
-        <td>joining date</td>
-        <td>joining date</td>
+      <tr *ngFor="let item of list; index as i" [ngClass]="{'notPaid' : check(i)}">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.panel}}</td>
+        <td>{{item.phone_no}}</td>
+        <td>{{item.month}}</td>
+        <td>{{item.year}}</td>
+        <td>{{item.paid}}</td>
+        <td>{{item.street_no}}</td>
+        <td>{{item.ampere}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.balance}}</td> 
         <td>
-          <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Cash">
+          <input type="button" class="btn btn-primary"(click)="onUpdate(item,i)" data-toggle="modal" data-target="#myModal" value="Cash">
           <input type="button" class="btn btn-warning" value="Duplicate">
-          <input type="button" class="btn btn-danger" value="Del">
+          <input type="button" (click)="onClick(item)"  class="btn btn-danger" value="Del">
         </td>
       </tr>
     </table>

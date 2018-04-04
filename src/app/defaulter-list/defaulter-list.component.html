@@ -131,20 +131,20 @@
         <th>REMARKS</th>
         <th>Actions</th>
       </tr>
-      <tr>
-        <td>100</td>
-        <td>name</td>
-        <td>password</td>
-        <td>cnic</td>
-        <td>contact</td>
-        <td> amount</td>
-        <td>joining date</td>
-        <td>joining date</td>
-        <td>joining date</td>
-        <td>joining date</td>
+      <tr *ngFor="let item of list; index as i">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.panel}}</td>
+        <td>{{item.phone_no}}</td>
+        <td>{{item.paid}}</td>
+        <td>{{item.street_no}}</td>
+        <td>{{item.start_month}}</td>
+        <td>{{item.ampere}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.remarks}}</td>
         <td>
           <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Edit">
-          <input type="button" class="btn btn-danger" value="Del">
+          <input type="button" class="btn btn-danger" (click)="onClick(item,i)" value="Del">
         </td>
       </tr>
     </table>

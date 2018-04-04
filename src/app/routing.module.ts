@@ -15,6 +15,7 @@ import { EmployeeBankComponent } from './employee-bank/employee-bank.component';
 import { AdminAccountComponent } from './admin-account/admin-account.component';
 import { SuperBankComponent } from './super-bank/super-bank.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LOCATION_INITIALIZED } from '@angular/common';
 
 const appRoutes : Routes = [
   {
@@ -23,7 +24,7 @@ const appRoutes : Routes = [
   },
   {
     path : 'dashboard',
-    component : DashboardComponent
+    component : FeeListComponent
   },
   {
     path : 'customer-entry',

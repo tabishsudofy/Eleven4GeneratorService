@@ -21,7 +21,8 @@
       "styles": [
           "styles.css",
       "../node_modules/bootstrap/bootstrap.css",
-      "../node_modules/bootstrap/jquery-clockpicker.min.css"
+      "../node_modules/bootstrap/jquery-clockpicker.min.css",
+      "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css"
    ],
       "scripts": [
         "../node_modules/javascript/jquery.js",

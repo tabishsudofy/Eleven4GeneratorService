@@ -5,7 +5,7 @@
     <div class="form-group row">
       <div class="col-md-5">
 					<div class="field">
-							<input type="text" name="fullname" id="fullname" placeholder="Customer Name">
+							<input type="text" name="customerName" [(ngModel)]="input.name" placeholder="Customer Name">
 							<label for="fullname">Customer Name</label>
           </div>
          
@@ -13,7 +13,7 @@
       <div class="col-md-1"></div>
       <div class="col-md-5">
 					<div class="field">
-							<input type="text" name="fullname" id="fullname" placeholder="Panel">
+							<input type="text" name="fullname" [(ngModel)]="input.panel" placeholder="Panel">
 							<label for="fullname">Panel</label>
 					</div>
       </div>
@@ -21,14 +21,14 @@
     <div class="form-group row">
       <div class="col-md-5">
 					<div class="field">
-							<input type="text" name="fullname" id="fullname" placeholder="Phone Number">
+							<input type="text" name="fullname" [(ngModel)]="input.phone_no" placeholder="Phone Number">
 							<label for="fullname">Phone Number</label>
 					</div>
       </div>
       <div class="col-md-1"></div>
       <div class="col-md-5">
 					<div class="field">
-							<input type="number" name="fullname" id="fullname" placeholder="Paid">
+							<input type="number" name="fullname"[(ngModel)]="input.paid" placeholder="Paid">
 							<label for="fullname">Paid</label>
 					</div>
       </div>
@@ -36,14 +36,14 @@
     <div class="form-group row">
       <div class="col-md-5">
 					<div class="field">
-							<input type="number" name="fullname" id="fullname" placeholder="Street Number">
+							<input type="number" name="fullname" [(ngModel)]="input.street_no" placeholder="Street Number">
 							<label for="fullname">Street Number</label>
 					</div>
       </div>
       <div class="col-md-1"></div>
       <div class="col-md-5">
 					<div class="field">
-							<input type="date" name="fullname" id="fullname" placeholder="Start Month">
+							<input type="date" name="fullname" [(ngModel)]="input.start_month" placeholder="Start Month">
 							<label for="fullname">Start Month</label>
 					</div>
       </div>
@@ -51,14 +51,14 @@
     <div class="form-group row">
       <div class="col-md-5">  
           <div class="field">
-              <input type="number" name="fullname" id="fullname" placeholder="Ampere">
+              <input type="number" name="ampere" (keyup)="findAmount()" [(ngModel)]="input.ampere" placeholder="Ampere">
               <label for="fullname">Ampere</label>
           </div>
        </div>
        <div class="col-md-1"></div>
        <div class="col-md-5">  
           <div class="field">
-              <input type="text" name="fullname" id="fullname"  placeholder="Amount">
+              <input type="text" name="amount" [(ngModel)]="input.amount" placeholder="Amount">
               <label for="fullname">Amount</label>
           </div>
        </div>
@@ -66,7 +66,7 @@
 		<div class="form-group row">
 			<div class="col-md-2"></div>
 			<div class="col-md-4">
-				<input type="button" class="btn btn-success" value="Submit Record">
+				<input type="button"(click)="insertCustomer()" class="btn btn-success" value="Submit Record">
 			</div>
 			<div class="col-md-4">
 				<input type="reset" class="btn btn-danger"value="Reset">

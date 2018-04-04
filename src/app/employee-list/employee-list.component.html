@@ -115,19 +115,19 @@
         <th>EMPLOYEE Type</th>
         <th>Actions</th>
       </tr>
-      <tr>
-        <td>100</td>
-        <td>name</td>
-        <td>password</td>
-        <td>cnic</td>
-        <td>contact</td>
-        <td>address</td>
-        <td>Amount</td>
-        <td>joining date</td>
-        <td>Employee Type</td>
+      <tr *ngFor="let item of list;let i = index">
+        <td>{{i+1}}</td>
+        <td>{{item.employeeName}}</td>
+        <td>{{item.employeePassword}}</td>
+        <td>{{item.employeeCnic}}</td>
+        <td>{{item.employeeContact}}</td>
+        <td>{{item.employeeAdress}}</td>
+        <td>{{item.employeeAmount}}</td>
+        <td>{{item.employeeJoinMonth}}</td>
+        <td>{{item.type}}</td>
         <td>
           <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" value="Edit">
-          <input type="button" class="btn btn-danger" value="Del">
+          <input type="button" class="btn btn-danger" (click)="onClick(item,i)"value="Del">
         </td>
       </tr>
     </table>

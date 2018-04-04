@@ -7,6 +7,9 @@ form {
 #search_tab{
     background-color: rgb(238,238,238);
 }
+.notPaid{
+  background-color: sandybrown;
+}
 /**
 * Make the field a flex-container, reverse the order so label is on top.
 */
