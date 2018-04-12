@@ -1,9 +1,12 @@
-import { Component, OnInit,ViewContainerRef } from '@angular/core';
+import { Component, OnInit,ViewContainerRef,Renderer,ElementRef} from '@angular/core';
 import {HttpService} from '../services/http.service';
+import {CalculationService} from '../services/calculation.service';
+import {CalculationCustomerService} from '../services/calculationCustomerList.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { timeout } from 'q';
+import {CustomerListPipe} from '../pipes/cutomerListPipe.pipe';
 
-@Component({
+@Component({ 
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.css']
@@ -12,8 +15,13 @@ export class CustomerListComponent implements OnInit {
   public input : any;
   public inputModal : any;
   public recordsId : any;
+  searchableList : any = [];
+  public dummy_array : any = [];
+  
+
   constructor(private http : HttpService,public toastMessages: ToastsManager
-    , vcr: ViewContainerRef) {
+    , vcr: ViewContainerRef,private calculation : CalculationCustomerService
+  ,private renderer : Renderer, private elemRef : ElementRef) {
       this.toastMessages.setRootViewContainerRef(vcr);
       this.inputModal={
         name : "",
@@ -24,19 +32,28 @@ export class CustomerListComponent implements OnInit {
         start_month : "",
         ampere :"",
         amount:""
-      }
+      } 
+      this.searchableList = ['name','panel','phone_no','street_no','start_month'] ;
      }
   url = 'getAllEntries';
   
   list;
   getCustomerList(){
-    return this.http.getData(this.url).subscribe(data1=>{
+     this.http.getData(this.url).subscribe(data1=>{
       this.list = data1.data;
-      console.log(data1);
-    },err=>{
+      // this.totalAmpere(this.list);
+      // this.totalPaid(this.list);
+     this.http.getData(this.fee_list_url).subscribe(data1=>{
+        this.fee_list = data1.data;
+
+        this.checkingComparision(this.list,this.fee_list);
+      },err=>{console.log("Error while catching fee list data")})
+    },
+    err=>{
       console.log(err,"Oops It is an error");
     })
   }
+
   onUpdate(items){
     this.inputModal.name = items.name;
     this.inputModal.panel = items.panel;
@@ -51,10 +68,9 @@ export class CustomerListComponent implements OnInit {
 
 
   deleteCustomerData(item,index){
-    console.log(item._id+"this is an id ");
       var url = 'customerEntryDelete/'+item._id;
       this.addToDefaulters(item);
-      console.log(item)
+     
       this.http.deleteData(url).subscribe(data1 => {
        if(data1.statusCode === 200){
         this.toastMessages.success('Data Has been Deleted!', 'Deleted!');
@@ -85,10 +101,9 @@ addToDefaulters(item){
     ampere:item.ampere,
     amount:item.amount,
     remarks : "No Remarks Exist"
-
+ 
   };
       var url = 'saveDefaulterEntry';
-      console.log(this.input);
       this.http.addData(url,this.input).subscribe(data1 => {
         if(data1.statusCode === 200){
           this.toastMessages.success('Data has been entered in Defaulter List!', 'Saved!');
@@ -113,7 +128,6 @@ onClick(item, index){
       newdata;
       insertFee(){
           var url = 'saveDefaulterEntry';
-          console.log(this.input);
           this.http.addData(url,this.input).subscribe(data1 => {
             if(data1.statusCode === 200){
               this.toastMessages.success('Data Has been Saved!', 'Saved!');
@@ -155,7 +169,59 @@ onClick(item, index){
 findAmount(){
     this.inputModal.amount = this.inputModal.ampere * 2000;
   }
+  
+  //  Total Ampere
+  // public total_ampere = 0;
+  // totalAmpere(list){
+  //     for(let i=0; i < list.length; i++){
+  //       this.total_ampere = this.total_ampere + this.list[i].ampere;
+  //     }
+  // }
+  // Total Customers Payment
+  // public total_paid = 0;
+//   totalPaid(list){
+//     for(let i=0; i < list.length; i++){
+//       this.total_paid = this.total_paid + this.list[i].paid;
+//     }
+// }
+  // checking customers comparision
+  fee_list_url = 'getAllCustomerFee';
+  fee_list;
+  // getFeeList() {
+  //   return this.http.getData(this.fee_list_url).subscribe(data1 => {
+  //     this.fee_list = data1.data;
 
+  //   }, err => {
+  //     console.log(err, "Oops It is an error");
+  //   })
+  // }
+  checkingColor(index){
+    
+  }
+   mydate = new Date();
+  //  check = false;
+   mlist = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+  checkingComparision(customerList,feeList){
+    for(let i =0; i < customerList.length;i++){
+      for(let j=0; j < feeList.length;j++){
+        if(customerList[i].name == feeList[j].name
+        && customerList[i].phone_no == feeList[j].phone_no
+        && customerList[i].panel == feeList[j].panel
+        && feeList[j].month == this.mlist[this.mydate.getMonth()]
+      ){
+        customerList[i].checked = true;
+          this.dummy_array.push(customerList[i]);
+          // this.renderer.setElementStyle(this.elemRef.nativeElement,'backgroundColor','sandybrown');
+          // this.check = true;
+        }else{
+          
+        }
+      }
+      
+    }
+    console.log("It is a dummy array")
+    console.log(this.dummy_array);
+  }
   ngOnInit() {
     this.getCustomerList();
   }

@@ -108,7 +108,7 @@
         <div class="col-md-6"></div>
         <div class="form-group col-md-4">
             <div class="field">
-                <input type="text" name="fullname" id="search_tab" placeholder="Search">
+                <input type="text" [(ngModel)]="queryString" name="queryString" id="search_tab" placeholder="Search">
                 <label for="fullname">Search</label>
             </div>
         </div>
@@ -131,7 +131,7 @@
         <th>REMARKS</th>
         <th>Actions</th>
       </tr>
-      <tr *ngFor="let item of list; index as i">
+      <tr *ngFor="let item of list | FilterPipe: queryString : searchableList; index as i">
         <td>{{i+1}}</td>
         <td>{{item.name}}</td>
         <td>{{item.panel}}</td>

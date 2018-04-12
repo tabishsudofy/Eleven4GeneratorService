@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import {HttpService} from '../services/http.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {FilterPipe} from '../pipes/feeListPipe.pipe';
 
 @Component({
   selector: 'app-employee-list',
@@ -10,10 +11,11 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class EmployeeListComponent implements OnInit {
   public recordsId : any;
   public inputModal : any;
+  searchableList : any = [];
   constructor(private http : HttpService,public toastMessages: ToastsManager
     , vcr: ViewContainerRef ) {
     this.toastMessages.setRootViewContainerRef(vcr);
-
+ 
     this.inputModal={
       employeeName : "",
       employeePassword:"",
@@ -23,8 +25,9 @@ export class EmployeeListComponent implements OnInit {
       employeeJoinMonth : "",
       type : "",
     }
+    this.searchableList = ['employeeName','employeeCnic','employeeContact','employeePassword'] ;
 
-  }
+  } 
 
   url = 'getAllEmployees';
   list;

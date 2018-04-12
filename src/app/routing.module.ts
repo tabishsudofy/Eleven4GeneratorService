@@ -16,6 +16,7 @@ import { AdminAccountComponent } from './admin-account/admin-account.component';
 import { SuperBankComponent } from './super-bank/super-bank.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LOCATION_INITIALIZED } from '@angular/common';
+import {AuthGuard} from './guards/auth.guard';
 
 const appRoutes : Routes = [
   {
@@ -24,34 +25,42 @@ const appRoutes : Routes = [
   },
   {
     path : 'dashboard',
+    canActivate:[AuthGuard],
     component : FeeListComponent
   },
   {
     path : 'customer-entry',
+    canActivate:[AuthGuard],
     component : CustomerEntryComponent
   },
   {
     path : 'employee-entry',
+    canActivate:[AuthGuard],
     component : EmployeeEntryComponent
   },
   {
     path:'customer-list',
+    canActivate:[AuthGuard],
     component : CustomerListComponent 
   },
   {
     path : 'employee-list',
+    canActivate:[AuthGuard],
     component : EmployeeListComponent
   },
   {
     path : 'defaulter-list' ,
+    canActivate:[AuthGuard],
     component : DefaulterListComponent
   },
   {
     path : 'fee-entry',
+    canActivate:[AuthGuard],
     component : FeeEntryComponent
   },
   {
     path : 'fee-list',
+    canActivate:[AuthGuard],
     component : FeeListComponent
   },
   {
@@ -60,10 +69,12 @@ const appRoutes : Routes = [
   },
   {
     path : 'admin-account',
+    canActivate:[AuthGuard],
     component : AdminAccountComponent
   },
   {
     path : 'super-bank',
+    canActivate:[AuthGuard],
     component : SuperBankComponent
   },
   {

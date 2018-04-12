@@ -42,7 +42,7 @@
           <div class="form-group row">
             <div class="col-md-5">
                 <div class="field">
-                    <input type="number" name="paid"[(ngModel)]="input.paid" id="fullname" placeholder="Paid">
+                    <input type="number" (keyup)="paidAmount()" name="paid"[(ngModel)]="input.paid" id="fullname" placeholder="Paid">
                     <label for="fullname">Paid</label>
                 </div>
             </div>
@@ -109,17 +109,33 @@
         <div class="col-md-2"></div>
         <div class="col-md-4">
             <div class="field">
-                <input type="text" id="search_tab" placeholder="Search By Year">
+                <input type="text"[(ngModel)]="queryYear" name="queryString" id="search_tab" />
                 <label for="fullname">Search By Year</label>
             </div>
         </div>
         <div class="form-group col-md-4">
             <div class="field">
-                <input type="text" name="fullname" id="search_tab" placeholder="Search">
+                <input type="text" [(ngModel)]="queryString" name="queryString" id="search_tab" placeholder="Search">
                 <label for="fullname">Search</label>
             </div>
         </div>
       </form>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Total Paid : {{this.cal.total_paid}} </h3>
+      </div>
+      <div class="col-md-6">
+        <h3>Total Balance : {{this.cal.total_balance}}</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Total Ampere : {{this.cal.total_ampere }}</h3>
+      </div>
+      <div class="col-md-6">
+        <h3>Ampere Amount : {{this.cal.total_ampere*2000 }}</h3>
+      </div>
     </div>
   </div>
   <div class="table-responsive">
@@ -131,6 +147,7 @@
         <th>PHONE NUMBER</th>
         <th>Month</th>
         <th>YEAR</th>
+        <th>DATE</th>
         <th>PAID</th>
         <th>STREET NUMBER</th>
         <th>AMPERE</th>
@@ -138,13 +155,15 @@
         <th>BALANCE</th>
         <th>Actions</th>
       </tr>
-      <tr *ngFor="let item of list; index as i" [ngClass]="{'notPaid' : check(i)}">
+      <tr *ngFor="let item of list | FilterPipe: queryString : searchableList
+      | FilterPipe: queryYear : searchYear; index as i;" [ngClass]="{'notPaid' :item.checked}">
         <td>{{i+1}}</td>
         <td>{{item.name}}</td>
         <td>{{item.panel}}</td>
         <td>{{item.phone_no}}</td>
         <td>{{item.month}}</td>
         <td>{{item.year}}</td>
+        <td>{{item.month_date}}</td>
         <td>{{item.paid}}</td>
         <td>{{item.street_no}}</td>
         <td>{{item.ampere}}</td>
@@ -153,7 +172,7 @@
         <td>
           <input type="button" class="btn btn-primary"(click)="onUpdate(item,i)" data-toggle="modal" data-target="#myModal" value="Cash">
           <input type="button" class="btn btn-warning" value="Duplicate">
-          <input type="button" (click)="onClick(item)"  class="btn btn-danger" value="Del">
+          <input type="button" (click)="onClick(item,i)"  class="btn btn-danger" value="Del">
         </td>
       </tr>
     </table>

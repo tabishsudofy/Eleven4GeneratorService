@@ -7,7 +7,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
   templateUrl: './fee-entry.component.html',
   styleUrls: ['./fee-entry.component.css']
 })
-export class FeeEntryComponent implements OnInit {
+export class FeeEntryComponent implements OnInit { 
 
   public input :any;
   constructor(private http : HttpService,public toastMessages: ToastsManager
@@ -17,6 +17,7 @@ export class FeeEntryComponent implements OnInit {
       name : "",
       panel:"",
       phone_no:"",
+      month_date : "",
       paid:"",
       street_no:"",
       ampere:"",

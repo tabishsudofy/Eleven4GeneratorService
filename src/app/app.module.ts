@@ -10,11 +10,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
            // Declare Components 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import {FilterPipe} from './pipes/feeListPipe.pipe';
+import {CustomerListPipe} from './pipes/cutomerListPipe.pipe';
+
 
 
               //services
 import {HttpService} from './services/http.service';
 import {HttpModule} from '@angular/http';
+import {CalculationService} from './services/calculation.service';
+import {CalculationCustomerService} from './services/calculationCustomerList.service';
+import {AuthService} from './services/auth.service';
+import {AuthGuard} from './guards/auth.guard';
 
 
 
@@ -25,7 +32,9 @@ import {HttpModule} from '@angular/http';
   declarations: [
     AppComponent,
     HeaderComponent,
-    routingComponents
+    routingComponents,
+    FilterPipe,
+    CustomerListPipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,10 @@ import {HttpModule} from '@angular/http';
     BrowserAnimationsModule,
     ToastModule.forRoot()
   ],
-  providers: [HttpService],
+  providers: [HttpService,
+    CalculationService,
+    CalculationCustomerService,
+    AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

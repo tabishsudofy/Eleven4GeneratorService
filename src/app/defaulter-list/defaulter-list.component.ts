@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import {HttpService} from '../services/http.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {FilterPipe} from '../pipes/feeListPipe.pipe';
 
 @Component({
   selector: 'app-defaulter-list',
@@ -10,6 +11,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class DefaulterListComponent implements OnInit {
   public inputModal : any;
   public recordsId : any;
+  searchableList : any = [];
+
   constructor(private http : HttpService,public toastMessages: ToastsManager
     , vcr: ViewContainerRef) { 
       this.toastMessages.setRootViewContainerRef(vcr);
@@ -24,6 +27,7 @@ export class DefaulterListComponent implements OnInit {
         amount:"",
         remarks : ""
       }
+      this.searchableList = ['name','panel','phone_no','street_no','remarks','start_month'] ;
     }
 
   url = 'getAllDefaulters';

@@ -6,9 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-bank.component.css']
 })
 export class EmployeeBankComponent implements OnInit {
-
-  constructor() { }
-
+  public localData :any =[];
+  name:any=[];
+  constructor() {
+   this.localData = JSON.parse(localStorage.getItem("user"));
+   for(let i=0; i < this.localData.length;i++){
+    this.name = this.localData[i].name;
+   }
+   
+  }
+ 
+ 
   ngOnInit() {
   }
 

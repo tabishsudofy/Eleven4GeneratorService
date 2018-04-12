@@ -10,6 +10,19 @@ form {
 th{
   text-align: center;
 }
+.table-bordered{
+  border: 0px solid black;
+}
+tr.success{
+  color:darkblue;
+  background-color: rgb(51, 23, 23);
+}
+.difference{
+  color:red;
+}
+td{
+  border:0px solid black !important;
+}
 /**
 * Make the field a flex-container, reverse the order so label is on top.
 */
