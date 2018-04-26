@@ -11,7 +11,7 @@
         <div class="col-md-6"></div>
         <div class="form-group col-md-4">
             <div class="field">
-                <input type="text" name="fullname" id="search_bar" placeholder="Search">
+                <input type="text" name="searchMonth" [(ngModel)]="searchMonth" id="search_bar" placeholder="Search">
                 <label for="fullname">Search</label>
             </div>
         </div>
@@ -29,13 +29,13 @@
         <th>MONTH</th>
         <th>DATE</th>
       </tr>
-      <tr>
-        <td>100</td>
-        <td>name</td>
-        <td>password</td>
-        <td>cnic</td>
-        <td>contact</td>
-        <td>address</td>
+      <tr *ngFor="let items of list | SearchRecieved:searchMonth; index as i">
+        <td>{{i+1}}</td>
+        <td>{{items.from}}</td>
+        <td>{{items.to}}</td>
+        <td>{{items.sendAmount}}</td>
+        <td>{{items.month}}</td>
+        <td>{{items.date}}</td>
       </tr>
     </table>
   </div>

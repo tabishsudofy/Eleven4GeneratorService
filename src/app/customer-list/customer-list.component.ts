@@ -45,7 +45,6 @@ export class CustomerListComponent implements OnInit {
       // this.totalPaid(this.list);
      this.http.getData(this.fee_list_url).subscribe(data1=>{
         this.fee_list = data1.data;
-
         this.checkingComparision(this.list,this.fee_list);
       },err=>{console.log("Error while catching fee list data")})
     },
@@ -121,7 +120,6 @@ addToDefaulters(item){
 onClick(item, index){
 //  this.addToDefaulters(item);
   this.deleteCustomerData(item, index);
- 
 }
       // add to defaulters
 
@@ -210,16 +208,26 @@ findAmount(){
         && feeList[j].month == this.mlist[this.mydate.getMonth()]
       ){
         customerList[i].checked = true;
-          this.dummy_array.push(customerList[i]);
+     
           // this.renderer.setElementStyle(this.elemRef.nativeElement,'backgroundColor','sandybrown');
           // this.check = true;
-        }else{
-          
+        }
+        else{
+          customerList[i].check = false;
+          customerList[i].object = {
+            Name : customerList[i].name,
+            panel :customerList[i].panel,
+            phone_no : customerList[i].phone_no,
+            paid : customerList[i].paid,
+            street_no : customerList[i].street_no,
+            ampere : customerList[i].ampere,
+            amount : customerList[i].amount
+          };
+            this.dummy_array.push(customerList[i].object);
         }
       }
       
     }
-    console.log("It is a dummy array")
     console.log(this.dummy_array);
   }
   ngOnInit() {

@@ -5,13 +5,17 @@
     <div class="form-group row">
       <div class="col-md-5">
 					<div>
-              <label class="amount_heading">Amount</label>
+              <label class="amount_heading">
+                Amount
+              </label>
 					</div>
       </div>
     </div>
     <div class="form-group row">
         <div class="col-md-5">
-            <label class="amount_heading">100000</label>
+            <label class="amount_heading">
+            {{empAmount}}  
+            </label>
         </div> 
     </div>
     <div class="row">
@@ -26,7 +30,7 @@
     <div class="col-md-5 form-group">
         <div class="field">
           <input type="text" value="Admin" readonly>
-          <label for="fullname">To</label>
+          <label for="fullname">To</label> 
         </div>
     </div>
   </div>
@@ -34,8 +38,8 @@
   <div class="row">
       <div class="col-md-5 form-group">
           <div class="field">
-            <input type="button"class="btn btn-success" value="Send Amount" readonly/>
-          </div>
+            <input type="button"class="btn btn-success" (click)="onCheck()" *ngIf="checkButton" value="Send Amount" readonly/>
+          </div> 
       </div>
     </div>
 </form>

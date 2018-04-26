@@ -25,12 +25,11 @@ export class CustomerListPipe implements PipeTransform {
           }
         }
       })
-    }console.log("=============")
-    console.log(value);
+    }
     if(value) {
       this.customerService.totalPaidCustomer(value);
       this.customerService.totalAmpereCustomer(value);
-      console.log(value);
+      
     }
     return value;
   }

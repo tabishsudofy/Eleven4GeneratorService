@@ -25,6 +25,7 @@
     "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
     "flash-messages": "0.0.4",
+    "is-online": "^7.0.0",
     "ng2-toastr": "^4.1.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"

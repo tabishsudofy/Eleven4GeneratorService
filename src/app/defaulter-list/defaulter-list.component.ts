@@ -2,6 +2,7 @@ import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import {HttpService} from '../services/http.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import {FilterPipe} from '../pipes/feeListPipe.pipe';
+import { NavigateLoginService } from '../services/navigateLogin.service';
 
 @Component({
   selector: 'app-defaulter-list',
@@ -14,7 +15,7 @@ export class DefaulterListComponent implements OnInit {
   searchableList : any = [];
 
   constructor(private http : HttpService,public toastMessages: ToastsManager
-    , vcr: ViewContainerRef) { 
+    , vcr: ViewContainerRef, private navigateService : NavigateLoginService) { 
       this.toastMessages.setRootViewContainerRef(vcr);
       this.inputModal={
         name : "",
@@ -107,6 +108,7 @@ findAmount(){
 
   ngOnInit() {
     this.getDefaulterList();
+    this.navigateService.checkUser();
   }
-
+ 
 }

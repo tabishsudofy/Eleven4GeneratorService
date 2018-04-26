@@ -19,6 +19,8 @@ export class HttpService {
     })
   }
   editData(url,data){
+    console.log("It is a data");
+    console.log(data);
     return this._http.put(`${this.base_url}${url}`,data).map(data=>{
       console.log(data.json())
       return data.json();

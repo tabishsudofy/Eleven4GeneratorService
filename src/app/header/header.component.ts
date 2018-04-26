@@ -19,10 +19,7 @@ export class HeaderComponent implements OnInit {
   onLoginCheck(){
          let  user : any  = [];
           user = JSON.parse(localStorage.getItem("user"));
-          console.log("It is a user")
-          console.log(user);
            for(let i=0; i < user.length;i++){
-             console.log(user[i].type == "Admin")
              if(user[i].type == "Admin" || user[i].type == "admin"){
                this.typeCheck = true;
              }

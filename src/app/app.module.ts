@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import {FilterPipe} from './pipes/feeListPipe.pipe';
 import {CustomerListPipe} from './pipes/cutomerListPipe.pipe';
+import {SearchRecievedPipe} from './pipes/searchRecieved.pipe';
 
 
 
@@ -22,6 +23,7 @@ import {CalculationService} from './services/calculation.service';
 import {CalculationCustomerService} from './services/calculationCustomerList.service';
 import {AuthService} from './services/auth.service';
 import {AuthGuard} from './guards/auth.guard';
+import { NavigateLoginService } from './services/navigateLogin.service';
 
 
 
@@ -34,7 +36,8 @@ import {AuthGuard} from './guards/auth.guard';
     HeaderComponent,
     routingComponents,
     FilterPipe,
-    CustomerListPipe
+    CustomerListPipe,
+    SearchRecievedPipe
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import {AuthGuard} from './guards/auth.guard';
   providers: [HttpService,
     CalculationService,
     CalculationCustomerService,
-    AuthService,AuthGuard],
+    AuthService,AuthGuard,NavigateLoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

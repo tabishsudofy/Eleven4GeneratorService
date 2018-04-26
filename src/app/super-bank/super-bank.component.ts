@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { NavigateLoginService } from '../services/navigateLogin.service';
+import {HttpService} from '../services/http.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { SearchRecievedPipe } from '../pipes/searchRecieved.pipe';
 
 @Component({
   selector: 'app-super-bank',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuperBankComponent implements OnInit {
 
-  constructor() { }
-
+  public list: any;
+  constructor(private navigateService : NavigateLoginService,
+    private http : HttpService, public toastMessages: ToastsManager
+    , vcr: ViewContainerRef) { 
+      this.toastMessages.setRootViewContainerRef(vcr);
+    }
+  getBankRecievedList(){
+    let url= 'getAllSends';
+    return this.http.getData(url).subscribe(data1=>{
+      this.list = data1.data;
+      console.log(this.list);
+    },err=>{
+      console.log(err,"Oops It is an error");
+    })
+  }
   ngOnInit() {
+    this.navigateService.checkUser();
+    this.getBankRecievedList();
   }
 
 }

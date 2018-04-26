@@ -3,7 +3,7 @@ import {Router , CanActivate} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router/src/router_state';
 import { Observable } from 'rxjs/Observable';
-//import { Promise } from 'q';
+
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -19,7 +19,5 @@ export class AuthGuard implements CanActivate {
     else{
         this.router.navigate([""]);
     }
-
   }
-
 }

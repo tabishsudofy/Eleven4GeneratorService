@@ -2,6 +2,7 @@ import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import {HttpService} from '../services/http.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import {FilterPipe} from '../pipes/feeListPipe.pipe';
+import { NavigateLoginService } from '../services/navigateLogin.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,7 +14,7 @@ export class EmployeeListComponent implements OnInit {
   public inputModal : any;
   searchableList : any = [];
   constructor(private http : HttpService,public toastMessages: ToastsManager
-    , vcr: ViewContainerRef ) {
+    , vcr: ViewContainerRef, private navigateService : NavigateLoginService ) {
     this.toastMessages.setRootViewContainerRef(vcr);
  
     this.inputModal={
@@ -34,14 +35,12 @@ export class EmployeeListComponent implements OnInit {
   getEmployeeList(){
     return this.http.getData(this.url).subscribe(data1=>{
       this.list = data1.data;
-      console.log(data1);
     },err=>{
       console.log(err,"Oops It is an error");
     })
   }
 
   deleteEmployeeData(id,index){
-    console.log(id+"this is an id ");
       var url = 'deleteEmployees/'+id;
       this.http.deleteData(url).subscribe(data1 => {
        if(data1.statusCode === 200){
@@ -65,7 +64,6 @@ onClick(item,index){
 
     // updating Records
     onUpdate(items){
-      console.log(items)
       this.inputModal.employeeName = items.employeeName;
       this.inputModal.employeePassword = items.employeePassword;
       this.inputModal.employeeCnic = items.employeeCnic;
@@ -74,15 +72,12 @@ onClick(item,index){
       this.inputModal.employeeJoinMonth = items.employeeJoinMonth;
       this.inputModal.type = items.type;
       this.recordsId  = items._id;
-      // console.log("it is an id")
-      console.log(this.recordsId)
     }
     editPopUpRecords(){
       this.updateModalRecords(this.recordsId , this.inputModal);
     }
     updateModalRecords(id,items){
       var url = 'employeeEntryUpdate/'+id;
-      console.log("it is an id ",id);
       this.http.editData(url,items).subscribe(data1 => { 
         if(data1.statusCode !== 505){
           this.toastMessages.success('Data Has been Updated!', 'Updated!');
@@ -99,13 +94,30 @@ onClick(item,index){
     )
   }
 
-
+ // delete from bank
+ deleteBankData(item,index){
+  var url = 'deletFromBank/'+item._id;
+  this.http.deleteData(url).subscribe(data1 => {
+   if(data1.statusCode === 200){
+    this.toastMessages.success('Data Has been Deleted!', 'Deleted!');
+   }
+   else{
+    this.toastMessages.error('Error While Deleting!', 'Error!!');
+   }
+   
+  },
+    err => {
+      console.log(err, "error")
+    }
+  )
+}
 
 
 
 
   ngOnInit() {
   this.getEmployeeList();
-  }
+  this.navigateService.checkUser();
+}
 
 }

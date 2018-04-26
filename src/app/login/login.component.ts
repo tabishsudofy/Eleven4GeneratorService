@@ -3,6 +3,7 @@ import {AuthService} from '../services/auth.service';
 import {Router,ActivatedRoute} from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { NavigateLoginService } from '../services/navigateLogin.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
  };
 
 constructor(private authService : AuthService,private router :Router
-  ,public toastMessages: ToastsManager
+  ,public toastMessages: ToastsManager , private checkUser : NavigateLoginService
   , vcr: ViewContainerRef) {
     this.toastMessages.setRootViewContainerRef(vcr);
    }
@@ -26,7 +27,6 @@ constructor(private authService : AuthService,private router :Router
 
 onLoginSubmit(){
    this.authService.authenticateUser(this.input).subscribe(data=>{
-     console.log(data);
      let user = [];
      let obj = {};
        if(data.success){     
@@ -49,18 +49,15 @@ onLoginSubmit(){
             }
           }
           
-     }else {
+     }
+     else {
       this.toastMessages.error('Invalid Username or Password', 'Error!');
      }
    })
  }
-//  onClick(){
-//    console.log(this.input);
-//    if(this.input.username =="Admin" && this.input.password == "123"){
-//      window.location.href="/fee-list";
-//    }
-//  }
-  ngOnInit() {
+
+ ngOnInit() {
+   this.checkUser.checkLogin();
   }
 
 }
