@@ -103,3 +103,26 @@ border-radius: 10%;
 .btn:hover{
 cursor: pointer;
 }
+.print-data{
+  display: none;
+}
+/*===================print=========================*/
+
+@media print {
+  .container-fluid{
+    display: none;
+  }
+  .print-data{
+    display: block;
+  }
+  .modal{
+    display: none;
+  }
+}
+
+
+
+
+
+
+

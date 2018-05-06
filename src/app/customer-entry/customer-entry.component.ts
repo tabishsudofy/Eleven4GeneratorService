@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import {HttpService} from '../services/http.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import {DataPassingService} from '../services/dataPassing.service';
 
 @Component({
   selector: 'app-customer-entry',
@@ -10,25 +11,27 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class CustomerEntryComponent implements OnInit {
 
   public input :any;
-  constructor(private http : HttpService,public toastMessages: ToastsManager
+  constructor(private http : HttpService,public toastMessages: ToastsManager,
+    private catchData : DataPassingService
     , vcr: ViewContainerRef) { 
       this.toastMessages.setRootViewContainerRef(vcr);
     this.input={
       name : "",
-      panel:"",
+      panel:"panel-",
       phone_no:"",
       paid:"",
-      street_no:"",
+      street_no:"st-",
       start_month:"",
       ampere:"",
       amount:""
-    };
+    };  
   }
    
   newdata;
   insertCustomer(){
       var url = 'saveCustomerEntry';
-
+      console.log(this.input.street_no);
+      console.log(this.input.panel);
       this.http.addData(url,this.input).subscribe(data1 => {
         if(data1.statusCode === 200){
           this.toastMessages.success('Data Has been Saved!', 'Saved!',1000);
@@ -47,6 +50,7 @@ export class CustomerEntryComponent implements OnInit {
     }
 
   ngOnInit() {
+   
   }
  
 }

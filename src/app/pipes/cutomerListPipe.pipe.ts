@@ -18,7 +18,6 @@ export class CustomerListPipe implements PipeTransform {
         for (var k in searchableList) {
           if (el[searchableList[k]].toLowerCase().indexOf(input) > -1) {
             isTrue = true;
-
           }
           if (isTrue) {
             return el
@@ -27,9 +26,9 @@ export class CustomerListPipe implements PipeTransform {
       })
     }
     if(value) {
+      // console.log(value);
       this.customerService.totalPaidCustomer(value);
       this.customerService.totalAmpereCustomer(value);
-      
     }
     return value;
   }

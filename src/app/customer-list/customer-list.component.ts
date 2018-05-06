@@ -2,9 +2,11 @@ import { Component, OnInit,ViewContainerRef,Renderer,ElementRef} from '@angular/
 import {HttpService} from '../services/http.service';
 import {CalculationService} from '../services/calculation.service';
 import {CalculationCustomerService} from '../services/calculationCustomerList.service';
+import {DataPassingService} from '../services/dataPassing.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { timeout } from 'q';
 import {CustomerListPipe} from '../pipes/cutomerListPipe.pipe';
+import { print } from 'util';
 
 @Component({ 
   selector: 'app-customer-list',
@@ -16,11 +18,13 @@ export class CustomerListComponent implements OnInit {
   public inputModal : any;
   public recordsId : any;
   searchableList : any = [];
-  public dummy_array : any = [];
+  public dummy_array1 : any = [];
+  public dummy_array2 : any = [];
   
 
   constructor(private http : HttpService,public toastMessages: ToastsManager
-    , vcr: ViewContainerRef,private calculation : CalculationCustomerService
+    , vcr: ViewContainerRef,private calculation : CalculationCustomerService,
+   private sendData : DataPassingService
   ,private renderer : Renderer, private elemRef : ElementRef) {
       this.toastMessages.setRootViewContainerRef(vcr);
       this.inputModal={
@@ -35,8 +39,8 @@ export class CustomerListComponent implements OnInit {
       } 
       this.searchableList = ['name','panel','phone_no','street_no','start_month'] ;
      }
+    
   url = 'getAllEntries';
-  
   list;
   getCustomerList(){
      this.http.getData(this.url).subscribe(data1=>{
@@ -161,7 +165,23 @@ onClick(item, index){
           }
         )
       }
-
+      printCheck1=false;
+      printCheck2=false;
+      vanishPrintButton=true;
+      onPrint(items,i){
+        this.printCheck1 = false;
+        this.printCheck2 = true;
+        // for(let i=0; i< items.length;i++){
+          this.vanishPrintButton=false;
+        // }
+        this.dummy_array2.push(items);
+        console.log(this.dummy_array2);
+      }
+      onPrintAll(){
+        this.printCheck1 = true;
+        this.printCheck2 = false;
+        console.log(this.dummy_array1);
+      }
       // Key Up  Functions
     
 findAmount(){
@@ -185,14 +205,6 @@ findAmount(){
   // checking customers comparision
   fee_list_url = 'getAllCustomerFee';
   fee_list;
-  // getFeeList() {
-  //   return this.http.getData(this.fee_list_url).subscribe(data1 => {
-  //     this.fee_list = data1.data;
-
-  //   }, err => {
-  //     console.log(err, "Oops It is an error");
-  //   })
-  // }
   checkingColor(index){
     
   }
@@ -208,28 +220,26 @@ findAmount(){
         && feeList[j].month == this.mlist[this.mydate.getMonth()]
       ){
         customerList[i].checked = true;
-     
-          // this.renderer.setElementStyle(this.elemRef.nativeElement,'backgroundColor','sandybrown');
-          // this.check = true;
-        }
-        else{
-          customerList[i].check = false;
-          customerList[i].object = {
-            Name : customerList[i].name,
-            panel :customerList[i].panel,
-            phone_no : customerList[i].phone_no,
-            paid : customerList[i].paid,
-            street_no : customerList[i].street_no,
-            ampere : customerList[i].ampere,
-            amount : customerList[i].amount
-          };
-            this.dummy_array.push(customerList[i].object);
         }
       }
-      
+      if(!customerList[i].checked) {
+        let object = {
+          name : customerList[i].name,
+          panel :customerList[i].panel,
+          phone_no : customerList[i].phone_no,
+          paid : customerList[i].paid,
+          street_no : customerList[i].street_no,
+          ampere : customerList[i].ampere,
+          amount : customerList[i].amount
+        };
+        this.dummy_array1.push(object);
+      }
     }
-    console.log(this.dummy_array);
+    console.log(this.dummy_array1);
   }
+  passData(items){
+    this.sendData.catchData(items);
+    }
   ngOnInit() {
     this.getCustomerList();
   }

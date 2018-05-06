@@ -30,6 +30,7 @@ export class EmployeeBankComponent implements OnInit {
     let url = 'getemployeeNameById/' + id;
     return this.http.getData(url).subscribe(data1 => {
       this.loginEmployeeDetails = data1.data;
+      console.log(this.loginEmployeeDetails);
       this.empAmount = this.loginEmployeeDetails.employeeAmount;
       this.sendId = data1.data._id;
       this.checkButton = data1.data.check;
@@ -54,7 +55,7 @@ export class EmployeeBankComponent implements OnInit {
         if (data1.statusCode !== 505) {
           this.toastMessages.success('Button has been pressed', 'Pressed');
           this.checkButton = data1.data.check;
-          // location.reload();
+          location.reload();
         }
         else {
           this.toastMessages.error('Error While Pressing!', 'Error!!');
@@ -71,6 +72,7 @@ export class EmployeeBankComponent implements OnInit {
   onSendAmount(id,camount) {
     console.log(camount);
     console.log(id);
+    if (this.empAmount > 0) {
     var url = 'updateRecievedAmount/'+ id;
     console.log(id);
     console.log(camount);
@@ -89,7 +91,10 @@ export class EmployeeBankComponent implements OnInit {
         console.log(err, "error")
       }
     )
+  } else{
+    this.toastMessages.error('Dont Press', 'Danger');
   }
+}
   
   ngOnInit() {
 

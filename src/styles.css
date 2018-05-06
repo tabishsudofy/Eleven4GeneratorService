@@ -3,6 +3,9 @@ td{
     text-align: center;
     border:0px solid black !important;
 }
+body{
+    background-image: url(assets/images/sativa.png);
+}
 .container{
  margin-top: 100px;
 }
@@ -49,6 +52,12 @@ button.toast-close-button {
     border: 0;
     -webkit-appearance: none;
 }
+input{
+    background-image: url(assets/images/sativa.png);
+}
+#myModal input{
+    background-image: none !important;
+  }
 .toast-top-center {
     top: 0;
     right: 0;

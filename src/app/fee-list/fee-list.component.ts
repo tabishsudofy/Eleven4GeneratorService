@@ -31,7 +31,8 @@ export class FeeListComponent implements OnInit {
       street_no: "",
       ampere: "",
       amount: "",
-      balance: ""
+      balance: "",
+      month_date:""
     }
     this.searchableList = ['name', 'phone_no', 'panel', 'month', 'year'];
     this.searchYear = ['year'];
@@ -73,7 +74,7 @@ export class FeeListComponent implements OnInit {
     this.deleteFeeData(items._id, index);
   }
   onUpdate(items) {
-
+    console.log(items)
     this.input.name = items.name;
     this.input.panel = items.panel;
     this.input.phone_no = items.phone_no;
@@ -83,6 +84,7 @@ export class FeeListComponent implements OnInit {
     this.input.ampere = items.ampere;
     this.input.amount = items.amount;
     this.input.balance = items.balance;
+    this.input.month_date = items.month_date;
     this.recordsId = items._id;
   }
   editPopUpRecords() {
@@ -143,9 +145,30 @@ export class FeeListComponent implements OnInit {
   //     this.total_balance = this.total_balance + this.list[i].balance;
   //   }
   // }
-    
+//   printContent() {
+//     let printContents =document.getElementById("print-data").innerHTML;
+//     document.write(
+//         '<body onload="window.print();">'
+//         + printContents + '</body></html>');
+//     document.close();
+// }
 
+  printData="";
+  duplicate_slip;
+  printDuplicateItems(items){
+    this.printData = items;
+    console.log(this.printData);
+    this.duplicate_slip = "Duplicate Slip";
+  }
+  printOrignal(items){
+    this.printData = items;
+    this.duplicate_slip = "Orignal Slip";
+  }
+  printOrignalItems(){
+    this.printOrignal(this.input);
+  }
   ngOnInit() {
-    this.getFeeList(); 
+    this.getFeeList();
+    console.log(this);
   }
 }

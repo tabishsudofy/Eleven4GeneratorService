@@ -5,7 +5,7 @@
   
   .container {
     width: 390px;
-    height: 549px;
+    height: 520px;
     background: #000;
     margin: 4% auto;
     text-align: center;
@@ -18,6 +18,7 @@
       margin: 8% auto;
   }
   input {
+    background-color: black !important;
     margin-bottom: 10px;
     height: 50px;
     border: 2px solid black;
@@ -31,7 +32,8 @@
     transition: all 0s ease-in-out;
     width: 100%;
     outline: none;
-    background-color: black;
+    background-image: none;
+   
    }
     input:focus {
       animation: fill 2s  ease-in-out forwards; }
@@ -94,7 +96,7 @@
     color: #fff;
     font-size: 16px;
     border-radius: 22px;
-    margin: 20% auto;
+    margin: 5% auto;
     transition: 0.5s;
     cursor: pointer; }
   
@@ -119,7 +121,13 @@
     color: #BDFFBD;
     font-size: 14px;
     }
-  
+  .login-detail{
+    color:white;
+    margin-top: 10%;
+  }
+  img {
+    margin-top: 5%;
+  }
 
   @keyframes fill {
     0%  {border-bottom: 2px solid green}

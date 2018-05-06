@@ -4,11 +4,15 @@
 form {
   margin: 2em 0;
 }
+
 #search_tab{
     background-color: rgb(238,238,238);
 }
 th{
   text-align: center;
+}
+tr:hover{
+  cursor: pointer;
 }
 .table-bordered{
   border: 0px solid black;
@@ -109,4 +113,24 @@ border-radius: 10%;
 }
 .btn:hover{
 cursor: pointer;
+}
+.print-data{
+  display: none;
+}
+.printAll{
+  display: none;
+}
+@media print {
+  .container-fluid{
+    display: none;
+  }
+  .print-data{
+    display: block;
+  }
+  .modal{
+    display: none;
+  }
+  img{
+    margin-left: -10px;
+  }
 }

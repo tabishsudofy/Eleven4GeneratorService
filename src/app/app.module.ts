@@ -1,43 +1,30 @@
-                 
-                 //Modules
+
+//Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RoutingModuleModule,routingComponents} from './routing.module';
-import {FormsModule} from '@angular/forms';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RoutingModuleModule, routingComponents } from './routing.module';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-           // Declare Components 
+// Declare Components 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import {FilterPipe} from './pipes/feeListPipe.pipe';
-import {CustomerListPipe} from './pipes/cutomerListPipe.pipe';
-import {SearchRecievedPipe} from './pipes/searchRecieved.pipe';
-
-
-
-              //services
-import {HttpService} from './services/http.service';
-import {HttpModule} from '@angular/http';
-import {CalculationService} from './services/calculation.service';
-import {CalculationCustomerService} from './services/calculationCustomerList.service';
-import {AuthService} from './services/auth.service';
-import {AuthGuard} from './guards/auth.guard';
+//services
+import { HttpService } from './services/http.service';
+import { HttpModule } from '@angular/http';
+import { CalculationService } from './services/calculation.service';
+import { CalculationCustomerService } from './services/calculationCustomerList.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 import { NavigateLoginService } from './services/navigateLogin.service';
-
-
-
+import { DataPassingService } from './services/dataPassing.service';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
     routingComponents,
-    FilterPipe,
-    CustomerListPipe,
-    SearchRecievedPipe
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -47,10 +34,14 @@ import { NavigateLoginService } from './services/navigateLogin.service';
     BrowserAnimationsModule,
     ToastModule.forRoot()
   ],
-  providers: [HttpService,
+  providers: [
+    HttpService,
     CalculationService,
     CalculationCustomerService,
-    AuthService,AuthGuard,NavigateLoginService],
+    AuthService, AuthGuard,
+    NavigateLoginService,
+    DataPassingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

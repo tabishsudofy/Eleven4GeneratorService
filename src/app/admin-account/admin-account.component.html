@@ -6,19 +6,19 @@
   <div class="table-responsive">
     <table class="table table-hover table-bordered search-table">
       <tr class="info active">
-        <th>USER ID</th>
+        <!-- <th>USER ID</th> -->
        <th>FROM</th>
        <th>TO</th>
        <th>AMOUNT</th>
         <th>RECIEVED AMOUNT</th>
       </tr>
       <tr *ngFor="let items of list;index as i">
-        <td>{{items.empBankId}}</td>
+        <!-- <td>{{items.empBankId}}</td> -->
         <td>{{items.from}}</td>
         <td>{{items.to}}</td>
         <td>{{items.recievedAmount}}</td>
         <td>
-          <input type="button" (click)="updateBankAmount(items)" *ngIf="items.checkAmount" class="btn btn-success" value="Recieved Amount">
+          <input type="button" (click)="updateBank(items)" *ngIf="items.checkAmount" class="btn btn-success" value="Recieved Amount">
         </td>
       </tr>
     </table>
